@@ -24,6 +24,8 @@
 #define FAST_THRESHOLD = 2000.0f;
 #define ZERO_THRESHOLD = 10.0f;
 
+#define LAB2_USE_INTERRUPT 0
+
 
 typedef enum {
     GYRO_NONE = 0,   
@@ -35,7 +37,7 @@ typedef enum {
 } Gyro_Direction_t;
 
 volatile uint8_t button_Pressed = 0; 
-volatile Gyro_Direction_t g_Gyro_Direction = GYRO_NONE;
+volatile Gyro_Direction_t gyro_Direction = GYRO_NONE;
 
 
 void sampleUserButton();

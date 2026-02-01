@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include <Application_Code.h>
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -97,11 +98,20 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    /* USER CODE END WHILE */
+    #if !(LAB2_USE_INTERRUPT)
+    sampleUserButton();
+    gyro_Direction = getGyroDirection();
+    drive_LED(gyro_Direction);
+    HAL_Delay(100);
+    #endif
 
-    /* USER CODE BEGIN 3 */
+    #if (LAB2_USE_INTERRUPT)
+    {
+      // write code!
+      drive_LED(gyro_Direction);
+    }
+    #endif
   }
-  /* USER CODE END 3 */
 }
 
 /**
