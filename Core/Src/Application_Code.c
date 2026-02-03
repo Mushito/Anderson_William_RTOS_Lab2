@@ -7,8 +7,11 @@
 
 #include "Application_Code.h"
 
+volatile uint8_t button_Pressed = 0;
+volatile Gyro_Direction_t gyro_Direction = GYRO_NONE;
+
 void sampleUserButton(){
-    if  (HAL_GPIO_ReadPin(USER_BUTTON_PORT, USER_BUTTON_PIN == GPIO_PIN_SET));
+    if(HAL_GPIO_ReadPin(USER_BUTTON_PORT, USER_BUTTON_PIN == GPIO_PIN_SET))
         button_Pressed = 1;
     else button_Pressed = 0;
 }
@@ -22,11 +25,9 @@ Gyro_Direction_t getGyroDirection(void){
         return GYRO_SLOW_CW;
     else if(angVel < ZERO_THRESHOLD && angVel > -ZERO_THRESHOLD)
         return GYRO_NONE;
-    else if (angVel < -SLOW_THRESHOLD)
-        return GYRO_SLOW_CCW;
     else if (angVel < -FAST_THRESHOLD)
         return GYRO_FAST_CCW;
-    else return GYRO_ERROR;
+    else return GYRO_SLOW_CCW;
 }
 
 void drive_LED(Gyro_Direction_t dir){

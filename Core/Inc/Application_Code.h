@@ -20,25 +20,23 @@
 #define GREEN_LED_PORT   GPIOG
 #define USER_BUTTON_PORT GPIOA
 
-#define SLOW_THRESHOLD = 500.0f;
-#define FAST_THRESHOLD = 2000.0f;
-#define ZERO_THRESHOLD = 10.0f;
+#define SLOW_THRESHOLD 10000.0f
+#define FAST_THRESHOLD 20000.0f
+#define ZERO_THRESHOLD 75.0f
 
 #define LAB2_USE_INTERRUPT 0
 
-
 typedef enum {
-    GYRO_NONE = 0,   
+    GYRO_NONE = 0,
     GYRO_SLOW_CW,
     GYRO_FAST_CW,
-    GYRO_SLOW_CCW,      
+    GYRO_SLOW_CCW,
     GYRO_FAST_CCW,
 	GYRO_ERROR
 } Gyro_Direction_t;
 
-volatile uint8_t button_Pressed = 0; 
-volatile Gyro_Direction_t gyro_Direction = GYRO_NONE;
-
+extern volatile uint8_t button_Pressed;
+extern volatile Gyro_Direction_t gyro_Direction;
 
 void sampleUserButton();
 
