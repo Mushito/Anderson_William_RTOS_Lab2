@@ -108,8 +108,7 @@ int main(void)
 
     #if (LAB2_USE_INTERRUPT)
     {
-      // write code!
-      drive_LED(gyro_Direction);
+      HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFI);
     }
     #endif
   }
