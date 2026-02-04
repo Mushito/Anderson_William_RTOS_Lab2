@@ -107,11 +107,8 @@ int main(void)
     #endif
 
     #if (LAB2_USE_INTERRUPT)
-    {
-      //HAL_DBGMCU_EnableDBGSleepMode();
-      //HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFI);
-    }
-    #endif
+    HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFI);
+	#endif
   }
 }
 
@@ -455,8 +452,10 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
 /* USER CODE BEGIN MX_GPIO_Init_2 */
+  #if (LAB2_USE_INTERRUPT)
   HAL_NVIC_SetPriority(EXTI0_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(EXTI0_IRQn);
+  #endif
 /* USER CODE END MX_GPIO_Init_2 */
 }
 

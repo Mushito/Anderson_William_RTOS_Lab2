@@ -22,9 +22,9 @@
 
 #define SLOW_THRESHOLD 10000
 #define FAST_THRESHOLD 20000
-#define ZERO_THRESHOLD 200
+#define ZERO_THRESHOLD 500
 
-#define LAB2_USE_INTERRUPT 1
+#define LAB2_USE_INTERRUPT 0
 
 typedef enum {
     GYRO_NONE = 0,

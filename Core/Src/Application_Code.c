@@ -39,24 +39,25 @@ void drive_LED(Gyro_Direction_t dir){
         HAL_GPIO_WritePin(RED_LED_PORT, RED_LED_PIN, GPIO_PIN_SET);
     else HAL_GPIO_WritePin(RED_LED_PORT, RED_LED_PIN, GPIO_PIN_RESET);
 }
+#if (LAB2_USE_INTERRUPT)
+	void HAL_SYSTICK_Callback(){
+		static uint32_t counter = 0;
+		counter++;
 
-void HAL_SYSTICK_Callback(){
-    static uint32_t counter = 0;
-    counter++;
-    
-    if((counter % 100) == 0){
-        gyro_Direction = getGyroDirection();
-        drive_LED(gyro_Direction);
-    }
-}
+		if((counter % 100) == 0){
+			gyro_Direction = getGyroDirection();
+			drive_LED(gyro_Direction);
+		}
+	}
 
-void EXTI0_IRQHandler(void){
-    HAL_GPIO_EXTI_IRQHandler(USER_BUTTON_PIN);
-}
+	void EXTI0_IRQHandler(void){
+		HAL_GPIO_EXTI_IRQHandler(USER_BUTTON_PIN);
+	}
 
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
-    if(GPIO_Pin == USER_BUTTON_PIN){
-        sampleUserButton();
-        drive_LED(gyro_Direction);
-    }
-}
+	void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
+		if(GPIO_Pin == USER_BUTTON_PIN){
+			sampleUserButton();
+			drive_LED(gyro_Direction);
+		}
+	}
+#endif
