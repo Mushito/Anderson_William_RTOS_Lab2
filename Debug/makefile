@@ -60,8 +60,8 @@ all: main-build
 main-build: Anderson_William_RTOS_Lab2.elf secondary-outputs
 
 # Tool invocations
-Anderson_William_RTOS_Lab2.elf Anderson_William_RTOS_Lab2.map: $(OBJS) $(USER_OBJS) C:\Users\willa\OneDrive\Documents\Labs\ S25\ECEN\ 2370\Anderson_William_RTOS_Lab2\STM32F429ZITX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Anderson_William_RTOS_Lab2.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\willa\OneDrive\Documents\Labs S25\ECEN 2370\Anderson_William_RTOS_Lab2\STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Anderson_William_RTOS_Lab2.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Anderson_William_RTOS_Lab2.elf Anderson_William_RTOS_Lab2.map: $(OBJS) $(USER_OBJS) C:\Users\willa\OneDrive\Documents\CU\Labs\ S26\ECEN\ 3753\Anderson_William_RTOS_Lab2\STM32F429ZITX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Anderson_William_RTOS_Lab2.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\willa\OneDrive\Documents\CU\Labs S26\ECEN 3753\Anderson_William_RTOS_Lab2\STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Anderson_William_RTOS_Lab2.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

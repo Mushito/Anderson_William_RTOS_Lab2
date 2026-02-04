@@ -11,8 +11,8 @@ volatile uint8_t button_Pressed = 0;
 volatile Gyro_Direction_t gyro_Direction = GYRO_NONE;
 
 void sampleUserButton(){
-    if(HAL_GPIO_ReadPin(USER_BUTTON_PORT, USER_BUTTON_PIN == GPIO_PIN_SET))
-        button_Pressed = 1;
+	if(HAL_GPIO_ReadPin(USER_BUTTON_PORT, USER_BUTTON_PIN) == GPIO_PIN_SET)
+		button_Pressed = 1;
     else button_Pressed = 0;
 }
 
@@ -41,14 +41,22 @@ void drive_LED(Gyro_Direction_t dir){
 }
 
 void HAL_SYSTICK_Callback(){
-    static uint8_t counter = 0;
+    static uint32_t counter = 0;
     counter++;
     
     if((counter % 100) == 0){
-        counter = 0;
-
         gyro_Direction = getGyroDirection();
         drive_LED(gyro_Direction);
     }
+}
 
+void EXTI0_IRQHandler(void){
+    HAL_GPIO_EXTI_IRQHandler(USER_BUTTON_PIN);
+}
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
+    if(GPIO_Pin == USER_BUTTON_PIN){
+        sampleUserButton();
+        drive_LED(gyro_Direction);
+    }
 }

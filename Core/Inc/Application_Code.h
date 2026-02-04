@@ -20,9 +20,9 @@
 #define GREEN_LED_PORT   GPIOG
 #define USER_BUTTON_PORT GPIOA
 
-#define SLOW_THRESHOLD 10000.0f
-#define FAST_THRESHOLD 20000.0f
-#define ZERO_THRESHOLD 75.0f
+#define SLOW_THRESHOLD 10000
+#define FAST_THRESHOLD 20000
+#define ZERO_THRESHOLD 200
 
 #define LAB2_USE_INTERRUPT 1
 
@@ -43,5 +43,11 @@ void sampleUserButton();
 Gyro_Direction_t getGyroDirection(void);
 
 void drive_LED(Gyro_Direction_t dir);
+
+void HAL_SYSTICK_Callback();
+
+void EXTI0_IRQHandler(void);
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin);
 
 #endif /* INC_APPLICATION_CODE_H_ */

@@ -2,4 +2,4 @@
 ../Core/Src/main.c:122:6:SystemClock_Config	3
 ../Core/Src/main.c:169:13:MX_SPI5_Init	2
 ../Core/Src/main.c:207:13:MX_GPIO_Init	1
-../Core/Src/main.c:469:6:Error_Handler	1
+../Core/Src/main.c:471:6:Error_Handler	1
